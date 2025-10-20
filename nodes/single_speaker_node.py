@@ -62,7 +62,7 @@ class VibeVoiceSingleSpeakerNode(BaseVibeVoiceNode):
                 "lora": ("LORA_CONFIG", {"tooltip": "Optional: LoRA configuration from VibeVoice LoRA node"}),
                 "temperature": ("FLOAT", {"default": 0.95, "min": 0.1, "max": 2.0, "step": 0.05, "tooltip": "Only used when sampling is enabled"}),
                 "top_p": ("FLOAT", {"default": 0.95, "min": 0.1, "max": 1.0, "step": 0.05, "tooltip": "Only used when sampling is enabled"}),
-                "max_words_per_chunk": ("INT", {"default": 250, "min": 100, "max": 500, "step": 50, "tooltip": "Maximum words per chunk for long texts. Lower values prevent speed issues but create more chunks."}),
+                "max_words_per_chunk": ("INT", {"default": 250, "min": 10, "max": 500, "step": 10, "tooltip": "Maximum words per chunk for long texts. Lower values prevent speed issues but create more chunks."}),
                 "voice_speed_factor": ("FLOAT", {
                     "default": 1.0,
                     "min": 0.8,
@@ -163,12 +163,12 @@ class VibeVoiceSingleSpeakerNode(BaseVibeVoiceNode):
                     
                 elif seg_type == 'text':
                     # Process text segment (with chunking if needed)
-                    word_count = len(seg_content.split())
+                    word_count = len(seg_content.encode('utf-8'))
                     
                     if word_count > max_words_per_chunk:
                         # Split long text into chunks
                         logger.info(f"Text segment {seg_idx+1} has {word_count} words, splitting into chunks...")
-                        text_chunks = self._split_text_into_chunks(seg_content, max_words_per_chunk)
+                        text_chunks = self.chunk_text(seg_content, max_words_per_chunk)
                         
                         for chunk_idx, chunk in enumerate(text_chunks):
                             logger.info(f"Processing chunk {chunk_idx+1}/{len(text_chunks)} of segment {seg_idx+1}...")
