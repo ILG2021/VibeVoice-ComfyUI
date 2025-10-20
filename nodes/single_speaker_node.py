@@ -62,7 +62,7 @@ class VibeVoiceSingleSpeakerNode(BaseVibeVoiceNode):
                 "lora": ("LORA_CONFIG", {"tooltip": "Optional: LoRA configuration from VibeVoice LoRA node"}),
                 "temperature": ("FLOAT", {"default": 0.95, "min": 0.1, "max": 2.0, "step": 0.05, "tooltip": "Only used when sampling is enabled"}),
                 "top_p": ("FLOAT", {"default": 0.95, "min": 0.1, "max": 1.0, "step": 0.05, "tooltip": "Only used when sampling is enabled"}),
-                "max_words_per_chunk": ("INT", {"default": 250, "min": 10, "max": 500, "step": 10, "tooltip": "Maximum words per chunk for long texts. Lower values prevent speed issues but create more chunks."}),
+                "max_words_per_chunk": ("INT", {"default": 250, "min": 10, "max": 500, "step": 1, "tooltip": "Maximum words per chunk for long texts. Lower values prevent speed issues but create more chunks."}),
                 "voice_speed_factor": ("FLOAT", {
                     "default": 1.0,
                     "min": 0.8,
