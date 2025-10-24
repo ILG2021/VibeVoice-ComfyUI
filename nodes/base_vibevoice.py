@@ -1538,6 +1538,7 @@ class BaseVibeVoiceNode:
         Returns:
             List of tuples: ('text', str) or ('pause', duration_ms)
         """
+        text = text.replace("\n", "[pause]")
         segments = []
         # Pattern matches [pause] or [pause:1500] where 1500 is milliseconds
         pattern = r'\[pause(?::(\d+))?\]'
