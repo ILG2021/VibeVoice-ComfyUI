@@ -664,7 +664,7 @@ class VibeVoiceProcessor:
         Convert text file to script format.
         Handles multiple formats:
         1. Already formatted as "Speaker X: text"
-        2. Plain text (assigns to Speaker 1)
+        2. Plain text (assigns to Speaker 0)
         
         Handles edge cases like multiple colons in a line.
         """

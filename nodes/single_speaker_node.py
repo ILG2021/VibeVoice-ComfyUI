@@ -142,8 +142,8 @@ class VibeVoiceSingleSpeakerNode(BaseVibeVoiceNode):
             # Load model with optional LoRA
             self.load_model(model, model_path, attention_type, quantize_llm=quantize_llm, lora_path=lora_path)
             
-            # For single speaker, we just use ["Speaker 1"]
-            speakers = ["Speaker 1"]
+            # For single speaker, we just use ["Speaker 0"]
+            speakers = ["Speaker 0"]
             
             # Parse pause keywords from text
             segments = self._parse_pause_keywords(final_text)

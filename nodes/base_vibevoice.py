@@ -1600,9 +1600,9 @@ class BaseVibeVoiceNode:
         # Clean up multiple spaces
         text = ' '.join(text.split())
         
-        # VibeVoice expects format: "Speaker 1: text" not "Name: text"
+        # VibeVoice expects format: "Speaker 0: text" not "Name: text"
         if len(speakers) == 1:
-            return f"Speaker 1: {text}"
+            return f"Speaker 0: {text}"
         else:
             # Check if text already has proper Speaker N: format
             if re.match(r'^\s*Speaker\s+\d+\s*:', text, re.IGNORECASE):
@@ -1615,7 +1615,7 @@ class BaseVibeVoiceNode:
                 return formatted_text
             else:
                 # Plain text, assign to first speaker
-                return f"Speaker 1: {text}"
+                return f"Speaker 0: {text}"
     
     def _generate_with_vibevoice(self, formatted_text: str, voice_samples: List[np.ndarray],
                                 cfg_scale: float, seed: int, diffusion_steps: int, use_sampling: bool,
